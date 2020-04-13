@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block body %}
+<form action="/upload" method="post" enctype="multipart/form-data">
+	<h1 class="title">Secure Image Sharing</h1>
+	{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	  {% for message in messages %}
+		<div class="notification is-warning">
+			{{message}}
+		</div>
+	  {% endfor %}
+	{% endif %}
+	{% endwith %}
+	<div class="field">
+		<input required name="image" type="file" >
+	</div>
+	<div class="field">
+		<input required name="caption" type="text" placeholder="Enter caption" class="input">
+	</div>
+	<div class="field">
+		<input type="submit" class="button is-primary is-fullwidth">
+	</div>
+</form>
+
+{% endblock %}

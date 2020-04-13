@@ -1,0 +1,16 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "7003:80"
+    volumes:
+      - ./src:/code
+      - ./httpd.conf:/etc/apache2/httpd.conf
+    environment:
+      - FLAG_IMGACCESS
+  secretserver:
+    image: abiosoft/caddy
+    volumes:
+      - ./flag.txt:/code/flag.txt
+      - ./Caddyfile:/etc/Caddyfile
