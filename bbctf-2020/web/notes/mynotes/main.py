@@ -79,18 +79,9 @@ def login():
 def visit_link():
     if request.method == "POST":
         url = request.form.get("url")
-        token = request.form.get("g-recaptcha-response")
-        r = requests.post("https://www.google.com/recaptcha/api/siteverify", data = {
-            'secret': os.environ.get('RECAPTCHA_SECRET'),
-            'response': token
-        })
-        if r.json()['success']:
-            job = q.enqueue(visit_url, url, result_ttl = 600)
-            flash("Our admin will visit the url soon.")
-            return render_template("visit_link.html", job_id = job.id)
-        else:
-            flash("Recaptcha verification failed")
-
+        job = q.enqueue(visit_url, url, result_ttl=600)
+        flash("Our admin will visit the url soon.")
+        return render_template("visit_link.html", job_id=job.id)
     return render_template("visit_link.html")
 
 @app.route("/status")
