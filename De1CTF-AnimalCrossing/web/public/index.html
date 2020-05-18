@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Animal Crossing</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/index.css" />
+</head>
+<body>
+
+<div class="panel">
+    <div class="title">
+        <div class="line"></div>
+        <p>PASSPORT</p>
+        <div class="line"></div>
+    </div>
+    <input type="file" name="file" id="file" onchange="fileUpload(this)" style="display:none;">
+    <form  action="/passport" class="content">
+        <div class="image">
+            <img src="/static/head.jpg" id="imageShow" onclick="document.getElementById('file').click();"/>
+        </div>
+        <input type="hidden" id="image" name="image" value="/static/head.jpg">
+        <div class="right">
+            <input type="text" placeholder="ISLAND NAME" id="island" name="island">
+            <img src="/static/Apples.png" class="fruit-img" id="fruitImg"></img>
+            <input list="typeList" id="fruit" name="fruit" placeholder="FRUIT" value="" onchange="document.getElementById('fruitImg').src = '/static/' + this.value + '.png'">
+            <datalist id="typeList">
+                <option>Apples</option>
+                <option>Peaches</option>
+                <option>Cherries</option>
+                <option>Pears</option>
+                <option>Oranges</option>
+            </datalist>
+            <input type="text" placeholder="USERNAME" id="user" name="name">
+            <input type="text" placeholder="TITLE" id="title" name="data">
+            <input type="submit" class="input-submit" value="START">
+        </div>
+
+    </form>
+    <div class="date">
+        Date :
+        <script>
+          var date = new Date();
+          var seperator1 = "-";
+          var year = date.getFullYear();
+          var month = date.getMonth() + 1;
+          month = month < 10 ? "0"+month:month;
+          var strDate = date.getDate();
+          strDate = strDate < 10 ? "0"+strDate:strDate;
+          document.write(year + seperator1 + month + seperator1 + strDate)
+        </script>
+    </div>
+    <div class="date2">
+        < < < < < < < < < < < < < < < < < < < <
+    </div>
+</div>
+
+<script type="text/javascript">
+    function fileUpload(obj) {
+      const form = new FormData(),
+        url = '/upload',
+        file = obj.files[0];
+      form.append('file', file);
+
+      fetch(url, {
+        method: 'POST',
+        body: form
+      }).then(function(response) {
+        // console.log(response)
+        if (response.status == 200 ) {
+            return response.json()
+        }
+        else {
+          throw response.statusText;
+        }
+      }).then(function(data) {
+        // console.log(data)
+        if (data.code == 200) {
+            document.getElementById("imageShow").src=data.data;
+            document.getElementById("image").value=data.data;
+        } else {
+          throw data.msg;
+        }
+      }).catch(function(e) {
+        // console.log(e)
+        alert(e)
+      });
+    }
+    function cssLoad(){
+      let width = document.body.clientWidth;
+      let height = document.body.clientHeight;
+      if (window.innerWidth)
+        width = window.innerWidth;
+      if (window.innerHeight)
+        height = window.innerHeight;
+      // console.log(width, height)
+      document.getElementsByTagName("body")[0].style.height = height +"px";
+      document.getElementsByTagName("body")[0].style.width  = width +"px";
+      document.getElementsByClassName("panel")[0].style.marginTop  = (height/4)+"px";
+
+      document.getElementsByClassName("panel")[0].style.marginLeft  = (width/2 - 309)+"px";
+    }
+  window.onload = () => {
+    cssLoad()
+  };
+  window.onresize = function(){
+    cssLoad()
+  }
+</script>
+</body>
+</html>
