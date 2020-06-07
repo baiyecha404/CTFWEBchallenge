@@ -1,0 +1,46 @@
+version: '3.5'
+services:
+  db:
+    build: ./docker/mysql
+    container_name: highlighter-db
+    environment: 
+      MYSQL_ROOT_PASSWORD: highlighter
+      MYSQL_USER: highlighter
+      MYSQL_PASSWORD: highlighter
+      MYSQL_DATABASE: highlighter
+    volumes: 
+      - ./conf/mysql:/docker-entrypoint-initdb.d
+    networks:
+      highlighter-backend:
+        ipv4_address: 172.23.0.2
+  node:
+    build: ./docker/node
+    container_name: highlighter-js
+    environment: 
+      NODE_ENV: 'development'
+    volumes: 
+      - ./data/node:/app
+      - ./flag:/redacted/flag
+    links:
+      - "db:db"
+      - "selenium:selenium"
+    networks:
+      highlighter-backend:
+        ipv4_address: 172.23.0.5
+  selenium:
+    build: ./docker/selenium
+    container_name: highlighter-selenium
+    environment:
+      GRID_TIMEOUT: 10
+    volumes:
+      - /dev/shm:/dev/shm
+      - ./flag:/redacted/flag
+    networks:
+      highlighter-backend:
+        ipv4_address: 172.23.0.4
+networks:
+  highlighter-backend:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.23.0.0/24

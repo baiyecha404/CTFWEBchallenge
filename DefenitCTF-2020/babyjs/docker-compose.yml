@@ -1,0 +1,18 @@
+version: "3"
+services:
+  node:
+    build: ./docker/node
+    container_name: babyjs
+    volumes:
+      - ./data/node:/app
+    environment:
+      - NODE_ENV=development
+    networks:
+      babyjs-backend:
+        ipv4_address: 172.15.0.2
+networks:
+  babyjs-backend:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.15.0.0/24

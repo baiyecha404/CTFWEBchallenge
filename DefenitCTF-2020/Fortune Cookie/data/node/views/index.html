@@ -1,0 +1,8 @@
+<h1>Fortune Cookie</h1>
+
+<% if (!session) { %><li><a href="/login">login</a></li>
+<% } else { %><li><a href="/posts">posts</a></li>
+<li><a href="/write">write</a></li>
+<li><a href="/flag">flag</a></li>
+<li><a href="/logout">logout</a></li>
+<% } %>

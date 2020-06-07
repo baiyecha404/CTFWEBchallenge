@@ -1,0 +1,10 @@
+<h1>Posts</h1>
+
+<a href="/">go back</a><br><br>
+
+<% if (posts.length === 0) { %>
+No Data Yet
+<% } %>
+<% for (let post of posts) { %>
+<li><a href="/view?id=<%= post._id %>"><%= post._id %></a></li>
+<% } %>

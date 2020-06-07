@@ -1,0 +1,7 @@
+<h1>List</h1>
+
+<a href="/">go back</a><br><br>
+
+<ul><% for (let post of posts.reverse()) { %>
+    <li><a href="/read?id=<%= post.id %>"><%= post.id %></a></li><% } %>
+</ul>

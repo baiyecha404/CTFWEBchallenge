@@ -1,0 +1,12 @@
+<h1>Highlighter</h1>
+
+<% if (session !== null) { %>
+    welcome <%= session.username %><br><br>
+    <li><a href="/logout">logout</a></li>
+    <li><a href="/list">list</a></li>
+    <li><a href="/write">write</a></li>
+    <li><a href="/report">report</a></li>
+<% } else { %>
+    <li><a href="/login">login</a></li>
+    <li><a href="/register">register</a></li>
+<% } %>

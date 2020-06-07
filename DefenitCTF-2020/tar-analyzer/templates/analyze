@@ -1,0 +1,32 @@
+<html>
+    <meta charset="UTF-8">
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="jumbotron">
+                <center>
+                    <p class="lead" style="font-weight: bold;">{{ fn }}</p>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Filename</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in files %}
+                                <tr>
+                                    <td><a href="/{{ path }}/{{ i }}">{{ i }}</a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    </form>
+                </center>
+            </div>
+        </div>
+    </body>
+</html>
