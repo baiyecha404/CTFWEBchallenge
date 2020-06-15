@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Criss Cross</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;1,300&display=swap");
+
+      body {
+        background-color: #282a3a;
+        color: white;
+        font-family: "IBM Plex Mono", monospace;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+      }
+
+      h1,
+      p {
+        margin: 5px;
+      }
+
+      h1 {
+        cursor: pointer;
+      }
+
+      i {
+        margin: 0 15px;
+      }
+
+      .container {
+        align-self: center;
+        width: 750px;
+      }
+
+      .card {
+        background-color: #383b52;
+        padding: 25px 60px;
+        margin: 10px 0;
+      }
+      .card__title {
+        font-size: 22px;
+      }
+      .card__report {
+        cursor: pointer;
+        font-size: 20px;
+        color: #ff4473;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 onclick="location='/'">Criss Cross</h1>
+    <p>Philosophy on Pwning</p>
+    <br />
+    <div class="container">
+      <div class="cards">
+        <div class="card">
+          <div class="card__title">
+            <i class="fas fa-exclamation-circle card__report"></i>
+            Reported Quote
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+  </body>
+</html>

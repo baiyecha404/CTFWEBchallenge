@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Criss Cross</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;1,300&display=swap");
+
+      body {
+        background-color: #282a3a;
+        color: white;
+        font-family: "IBM Plex Mono", monospace;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+      }
+
+      h1,
+      p {
+        margin: 5px;
+      }
+
+      h1 {
+        cursor: pointer;
+      }
+
+      .container {
+        align-self: center;
+        width: 750px;
+      }
+
+      .card {
+        background-color: #383b52;
+        padding: 25px 60px;
+        margin: 10px 0;
+        position: relative;
+      }
+      .card__quote {
+        font-size: 22px;
+      }
+      .card__author {
+        color: #a5abe0;
+      }
+      .card__report {
+        cursor: pointer;
+        font-size: 20px;
+        color: #ff4473;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 onclick="location='/'">Criss Cross</h1>
+    <p>Philosophy on Pwning</p>
+    <br />
+    <div class="container" id="quotes"></div>
+    <br />
+
+    <script>
+      (async function () {
+        let response = await fetch("/api/quotes");
+        let jsonData = await response.json();
+
+        let quotesContainer = document.querySelector("#quotes");
+        for (i of jsonData) {
+          quotesContainer.innerHTML += `<div class="cards">
+        <div class="card">
+          <div class="card__quote"><i>"${i.quote}"</i></div>
+          <br />
+          <div class="card__author">
+            - ${i.author}
+          </div>
+          <i
+            class="fas fa-exclamation-circle card__report"
+            onclick="location='/report?quote_url=https://vulnerableweb.site/api/quote/${i.id}'"
+          ></i>
+        </div>
+      </div>`;
+        }
+      })();
+    </script>
+  </body>
+</html>
