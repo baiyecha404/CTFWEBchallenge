@@ -1,0 +1,55 @@
+extends layout
+
+block content
+  .container.mb-4
+    .row.mt-5
+      .col-12
+        .table-responsive
+          if cart && cart.items
+            table.table.table-striped
+              thead
+                tr
+                  th(scope='col') Product
+                  th(scope='col') Available
+                  th(scope='col') Quantity
+                  th  
+                  th.text-right(scope='col') Price
+              tbody
+                - var subtotal = 0;
+                each item, key in cart.items
+                  - subtotal += (item.price * item.count)
+                  tr
+                    td #{item.name}
+                    td In stock
+                    td #{item.count}
+                    td.text-right
+                      a.btn.btn-sm.btn-danger(href=`/removeFromCart?item=${item.name}`) Remove
+                    td.text-right $ #{item.price}
+                tr
+                  td
+                  td
+                  td
+                  td.text-right Sub-Total
+                  td.text-right $ #{subtotal}
+                tr
+                  td
+                  td
+                  td
+                  td.text-right Shipping
+                  td.text-right $ 6.90
+                tr
+                  td
+                  td
+                  td
+                  td.text-right
+                    strong Total
+                  td.text-right
+                    strong $ #{Math.round((subtotal + 6.90) * 100) / 100}
+          else
+            .alert.alert-danger.mx-5(role='alert') Your cart is empty.
+      .col.mb-2
+        .row
+          .col-sm-12.col-md-6
+            a.btn.btn-block.btn-secondary(href='/') Continue Shopping
+          .col-sm-12.col-md-6.text-right
+            a.btn.btn-block.btn-success(href='/checkout') Checkout

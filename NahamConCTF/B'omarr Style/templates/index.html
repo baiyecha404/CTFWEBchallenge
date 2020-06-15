@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+            <h1 class="my-4">All the movies</h1>
+
+            <!-- Blog Post -->
+            {% if posts.count() !=0 %}
+                {% for post in posts %}
+                <div class="card mb-4">
+                    <img class="card-img-top" src="{{ post.thumbnail }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ post.title }}</h2>
+                        <p class="card-text">{{ post.header }}</p>
+                        <a href="/post/{{ post.title }}" class="btn btn-primary">Read More &rarr;</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        {{ post.date }}
+                        <a href="#">{{ post.author }}</a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="alert alert-danger" role="alert">
+                    No posts found
+                </div>
+            {% endif %}
+
+        </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+            <!-- Search Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Search</h5>
+                <div class="card-body">
+                    <form action="/" method="get">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="search" placeholder="Search for...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-secondary" type="submit">Go!</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Categories Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Categories</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a href="/?category=Original trilogy">Original trilogy</a>
+                                </li>
+                                <li>
+                                    <a href="/?category=Prequel trilogy">Prequel trilogy</a>
+                                </li>
+                                <li>
+                                    <a href="/?category=Sequel trilogy">Sequel trilogy</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a href="/?category=Anthology films">Anthology films</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+{% endblock %}

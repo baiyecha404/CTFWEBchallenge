@@ -105,7 +105,7 @@ def analyze():
 
 @app.route('/admin', methods=['GET'])
 def admin():
-	initializing()
+	#initializing()
 	data = hostcheck(request.remote_addr)
 
 	if data:

@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  // Page Content
+  .container
+    .row
+      .col-lg-3
+        h1.my-4 Plant Warehouse
+        .list-group
+          a.list-group-item(href='/?category=Indoor') Indoor
+          a.list-group-item(href='/?category=Outdoor') Outdoor
+      // /.col-lg-3
+      .col-lg-9
+        .card.mt-4
+          img.card-img-top.img-fluid(src=`${item.image}` alt='')
+          .card-body
+            a.btn.btn-primary.float-right#add2Cart(href=`/add2cart?item=${item.name}`) Add to cart
+            h3.card-title #{item.name}
+            h4 $#{item.price}
+            p.card-text
+              |#{item.description}
+            div
+              |#{item.rating} 
+              span.text-warning &starf;            
+        // /.card
+        .card.card-outline-secondary.my-4
+          .card-header
+            |Product Reviews
+          .card-body
+            each review in item.reviews
+              p #{review.content}
+              small.text-muted Posted by #{review.author}
+              hr
+              a.btn.btn-success(href='#') Leave a Review
+        // /.card
+      // /.col-lg-9
+  // /.container

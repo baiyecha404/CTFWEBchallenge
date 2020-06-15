@@ -1,0 +1,49 @@
+doctype html
+html
+  head
+    title= "Plant Warehouse"
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    style.
+      body {
+        padding-top: 56px;
+        padding-bottom: 56px;
+        min-height: 100vh;
+        position: relative;
+      }
+      .footer {
+        bottom: 0;
+        width: 100%;
+        position: absolute;
+        height: 56px;
+      }
+  body
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+      div.container
+        a.navbar-brand(href='/') Plant Warehouse
+        button.navbar-toggler(type='button', data-toggle="collapse", data-target="#navbarResponsive", aria-controls="navbarResponsive", aria-expanded="false", aria-label="Toggle navigation")
+          span.navbar-toggler-icon
+        div.collapse.navbar-collapse#navbarResponsive
+          ul.navbar-nav.ml-auto
+            li.nav-item
+              a.nav-link(href='/cart') Go to cart
+            if !user
+              li.nav-item
+                a.nav-link(href='/signup') Sign up
+              li.nav-item
+                a.nav-link(href='/signin') Sign in
+            else
+              li.nav-item
+                a.nav-link(href='/logout') Logout
+
+    block content
+
+    footer.bg-dark.footer 
+      div.container
+        .row.align-items-center
+          .col-12
+            p.pt-3.text-center.text-white Copyright &copy; Your Website 2020
+
+    script(src="https://code.jquery.com/jquery-3.4.1.slim.min.js", integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n", crossorigin="anonymous")
+    script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js", integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo", crossorigin="anonymous")
+    script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js", integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6", crossorigin="anonymous")

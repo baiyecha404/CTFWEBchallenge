@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 mt-5">
+            <div class="card">
+                <div class="card-header">Sign up</div>
+                <div class="card-body">
+                    <form action="/signup" method="POST">
+                        <div class="form-group row">
+                            <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
+                            <div class="col-md-6">
+                                <input type="text" id="username" class="form-control" name="username" required
+                                    autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                            <div class="col-md-6">
+                                <input type="password" id="password" class="form-control" name="password" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password2" class="col-md-4 col-form-label text-md-right">Confirm
+                                password</label>
+                            <div class="col-md-6">
+                                <input type="password" id="password2" class="form-control" name="password2" required>
+                            </div>
+                        </div>
+
+                        {% if error %}
+                        <div class="alert alert-danger" role="alert">
+                            {{error}}
+                        </div>
+                        {% endif %}
+
+                        <div class="row justify-content-center">
+                            <div class="col-mod-3">
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    Sign up
+                                </button>
+                            </div>
+                            <a href="/login" class="btn btn-link col-12">
+                                Already have an account? Login!
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+{% endblock %}

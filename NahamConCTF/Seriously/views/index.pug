@@ -1,0 +1,50 @@
+extends layout
+
+block content
+  // Page Content
+  .container
+    .row
+      .col-lg-3
+        h1.my-4 Plant Warehouse
+        .list-group
+          a.list-group-item(href='/?category=Indoor') Indoor
+          a.list-group-item(href='/?category=Outdoor') Outdoor
+      // /.col-lg-3
+      .col-lg-9
+        #carouselExampleIndicators.carousel.slide.my-4(data-ride='carousel')
+          ol.carousel-indicators
+            li.active(data-target='#carouselExampleIndicators' data-slide-to='0')
+            li(data-target='#carouselExampleIndicators' data-slide-to='1')
+            li(data-target='#carouselExampleIndicators' data-slide-to='2')
+          .carousel-inner(role='listbox')
+            .carousel-item.active
+              img.d-block.img-fluid(src='/images/index1.jpg' alt='First slide')
+            .carousel-item
+              img.d-block.img-fluid(src='/images/index2.jpg' alt='Second slide')
+            .carousel-item
+              img.d-block.img-fluid(src='/images/index3.jpg' alt='Third slide')
+          a.carousel-control-prev(href='#carouselExampleIndicators' role='button' data-slide='prev')
+            span.carousel-control-prev-icon(aria-hidden='true')
+            span.sr-only Previous
+          a.carousel-control-next(href='#carouselExampleIndicators' role='button' data-slide='next')
+            span.carousel-control-next-icon(aria-hidden='true')
+            span.sr-only Next
+        .row
+          each item in items
+            .col-lg-4.col-md-6.mb-4
+              .card.h-100
+                a(href=`/item/${item.name}`)
+                  img.card-img-top(src=`${item.thumbnail}`, alt='')
+                .card-body
+                  h4.card-title
+                    a(href=`/item/${item.name}`) #{item.name}
+                  h5 $#{item.price}
+                  p.card-text.text-truncate
+                    | #{item.description}
+                .card-footer
+                  small.text-muted #{item.rating} &starf;
+          
+        // /.row
+      // /.col-lg-9
+    // /.row
+  // /.container

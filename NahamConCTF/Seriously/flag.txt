@@ -1,0 +1,1 @@
+flag{seriously_deserialization_with_plants}
