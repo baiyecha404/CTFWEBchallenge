@@ -161,6 +161,7 @@ app.post("/debug", (req, res) => {
         /[\/\*\'\"\`\<\\\>\-\(\)\[\]\=]/g,
         ""
       );
+      console.log(req.query[i]);
     } catch {
       continue;
     }
@@ -180,13 +181,15 @@ app.post("/debug", (req, res) => {
       for (i in req.headers) {
         all += `  - ${i}: ${req.headers[i]}\n`;
       }
-
+      
       // HTTP Query Params
       all += `\nParameters:\n`;
       for (i in req.query) {
+        //so here req.query[0]={'toString':'a'} which is an object 
+        //it will cause error when converting it into strings.
         all += `  - ${i}: ${req.query[i]}\n`;
       }
-
+      
       return res.send(all);
     }
   } catch (e) {

@@ -1,0 +1,17 @@
+{
+  "name": "Super Highlighter",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "description": "Highlight your words using keyword or index!",
+  "homepage_url": "https://ctf.defenit.kr",
+  "permissions": [
+    "http://*/*",
+    "https://*/*",
+    "file://*/*"
+  ],
+  "background": {
+    "scripts": ["js/background.js"],
+    "persistent": true
+  },
+  "content_security_policy": "script-src 'self' https://accounts.google.com 'unsafe-eval'; object-src 'self'"
+}
