@@ -1,6 +1,0 @@
-version: '2'
-services:
-  mengnanforest:
-    build: ./
-    ports:
-      - "0.0.0.0:8848:8080"
