@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.0/milligram.css">
+    <title>Beginner's Web: OmniConverter</title>
+    <style>
+      body {
+        text-align: center;
+      }
+      .row {
+        justify-content: center;
+        margin: 1rem 0 1.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>OmniConverter</h1>
+      {% if error %}
+        <h2>ERROR: {{error}}</h2>
+      {% endif %}
+      <form method="POST">
+        <textarea name="input" minlength="10">{{input}}</textarea>
+        <div class="row">
+          <select class="column column-20" name="converter">
+            <option value="base64">Base64</option>
+            <option value="scrypt">scrypt</option>
+          </select>
+          <button class="column column-10" type="submit">Convert</button>
+        </div>
+        <textarea disabled>{{result}}</textarea>
+      </form>
+      <p>Session ID: {{sessionId}}</p>
+    </div>
+  </body>
+</html>
