@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+* {
+margin:0;
+padding:0;
+}
+div {
+position:relative;
+height:3.2em;
+background:#A6D2FF;
+margin:0 0 30px;
+}
+#nav {
+position:absolute;
+left:50%;top:0;
+margin-left:-380px;
+height:3.2em;
+width:760px;
+list-style:none;
+}
+#nav li {
+float:left;
+}
+#nav a {
+display:block;
+text-align:center;
+color:#000;
+height:3.2em;
+width:150px;
+line-height:3.2em;
+text-decoration:none; 
+margin-left:-2px;
+}
+#nav a:hover, #nav a:focus {
+background:#5E9BD9;
+color:#fff;
+}
+
+
