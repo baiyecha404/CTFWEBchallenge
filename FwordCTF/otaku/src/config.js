@@ -1,0 +1,4 @@
+module.exports={
+MONGO_URL:"mongodb://REDACTED:REDACTED:27017",
+SECRET:"REDACTED"
+}
