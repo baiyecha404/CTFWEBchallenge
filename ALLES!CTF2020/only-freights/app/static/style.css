@@ -1,0 +1,122 @@
+@font-face {
+    font-family: 'Boeticher';
+    src: url(boeticher-romanwebfont.woff)
+}
+
+* {
+    --content-bg: rgba(0, 0, 0, 0.4);
+    --text-color: #ffe150;
+}
+
+:root {
+    background:
+        radial-gradient(circle at 100% 50%, transparent 20%, rgba(255,255,255,.3) 21%, rgba(255,255,255,.3) 34%, transparent 35%, transparent),
+        radial-gradient(circle at 0% 50%, transparent 20%, rgba(255,255,255,.3) 21%, rgba(255,255,255,.3) 34%, transparent 35%, transparent) 0 -50px;
+    background-color: rgba(64, 128, 176);
+    background-size: 75px 100px;
+    overflow-y: scroll;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 800px;
+    justify-content: center;
+}
+
+header {
+    padding: 1rem;
+    padding-bottom: 0;
+    background-color: var(--content-bg);
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    text-align: center;
+    user-select: none;
+    color: var(--text-color);
+    font-family: 'Boeticher';
+}
+header > img {
+    height: 6rem;
+}
+header > h1 {
+    font-size: 2.5rem;
+    -webkit-text-stroke: 1.5px black;
+}
+header > h1 > .xxl {
+    font-size: 5rem;
+    -webkit-text-stroke-width: 2px;
+}
+
+main {
+    display: grid;
+    padding: 1rem;
+    background-color: var(--content-bg);
+    color: var(--text-color);
+    font-family: 'Boeticher';
+}
+#message {
+    font-size: 1.75rem;
+    text-align: center;
+}
+#directory {
+    margin-top: 2rem;
+    font-size: 1.75rem;
+}
+.tree-node > *:nth-child(n + 2) {
+    margin-left: 2rem;
+}
+.tree-node > .meta > .name {
+    cursor: pointer;
+    user-select: none;
+}
+.tree-node > .meta::before {
+    opacity: 0.75;
+    font-family: monospace;
+    content: '⯈';
+}
+.tree-node.open > .meta::before {
+    content: '⯆';
+}
+.tree-node.empty > .meta::before {
+    opacity: 0;
+}
+.tree-node > .meta > .add {
+    cursor: pointer;
+    opacity: 0.5;
+}
+.tree-node > .meta > .add:hover {
+    opacity: 1;
+}
+
+.tree-node .meta {
+    display: inline-block;
+}
+.tree-node .meta {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+.tree-node .meta:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+footer {
+    padding: 1rem;
+    padding-top: 2rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    background-color: var(--content-bg);
+    font-family: monospace;
+    font-size: small;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.25s ease-in-out;
+    user-select: none;
+}
+footer:hover {
+    color: rgba(255, 255, 255, 1);
+}
+footer a, footer a:visited {
+    color: inherit;
+}
+footer a:hover, footer a:visited:hover {
+    color: var(--text-color);
+}
