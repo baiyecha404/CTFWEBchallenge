@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MINI BLOG</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+    <style>
+form {
+        border: none !important;
+    box-shadow: none !important;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MINI BLOG</h1>
+        <div>this is the minimal blog platform. you can create your blog very small.</div>
+    </header>
+    <main>
+        <section>
+            <aside>
+                <form action="/login" method="POST">
+                    <label for="">username <input type="text" name="username" placeholder="your codename" required></label>
+                    <label for="">password <input type="password" name="password" placeholder="secure password" required></label>
+                    <button>LOGIN</button>
+                </form>
+            </aside>
+
+            <aside>
+                <form action="/register" method="POST">
+                    <label for="">username <input type="text" name="username" placeholder="your codename" required></label>
+                    <label for="">password <input type="password" name="password" placeholder="secure password" required></label>
+                    <button>REGISTER</button>
+                </form>
+            </aside>
+
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,6 @@
+<p>
+    this is the minimal blog pratform. you can use any html tags, styles, and scripts.
+</p>
+<p>
+    you can also use some template like <code>{{title}}</code>, <code>{{!content}}</code>, and <code>{{last_update}}</code> in the blog style template.
+</p>

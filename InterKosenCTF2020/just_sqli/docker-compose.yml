@@ -1,0 +1,7 @@
+version: "3"
+services:
+  just_sqli:
+    build:
+      context: .
+    ports:
+      - 14003:80

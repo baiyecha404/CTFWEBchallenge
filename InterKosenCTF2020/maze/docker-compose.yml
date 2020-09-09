@@ -1,0 +1,13 @@
+version: '3'
+services:
+  maze:
+    build: .
+    working_dir: /app
+    container_name: maze
+    ulimits:
+      nproc: 65535
+      core: 0
+    tty: true
+    ports:
+      - "14002:14002"
+    entrypoint: "node ./app.js"

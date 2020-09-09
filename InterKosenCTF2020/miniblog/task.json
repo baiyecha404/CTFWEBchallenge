@@ -1,0 +1,10 @@
+{
+    "name": "miniblog",
+    "description": "I created a <a href=\"http://${host}:${port}/\" target=\"_blank\">minimal blog platform</a>. It doesn't use any complex things.",
+    "flag": "KosenCTF{u_saw_th3_zip51ip_in_the_53CC0N_Beginn3r5_didn7?}",
+    "author": "theoremoon",
+    "tags": ["web"],
+    "host": "web.kosenctf.com",
+    "port": 14000,
+    "is_survey": false
+}

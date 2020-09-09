@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MINI BLOG</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+    <style>
+textarea {
+    width: 90%;
+    height: 10em;
+    resize: none;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>{{username}}</li>
+            </ul>
+            <a href="/logout">logout</a>
+        </nav>
+    </header>
+    <main>
+        <h2>write your post</h2>
+        <form action="post", method="POST">
+            <label for="">title <input type="text" name="title" placeholder="title" required /></label>
+            <label for="">
+                content
+                <textarea name="content" placeholder="some writeup or your knowledge" required></textarea>
+            </label>
+            <button>POST</button>
+        </form>
+
+        <h2>your posts</h2>
+        <ul>
+          % for title, id in posts.items():
+          <li><a href="/posts/{{userid}}/{{id}}">{{title}}</a></li>
+          % end
+        </ul>
+
+        <h2>edit your blog template</h2>
+        <form action="update" method="POST">
+            <textarea name="content">{{template}}</textarea>
+            <button>UPDATE</button>
+        </form>
+
+        <h2>your attachments</h2>
+        <ul>
+          % for a in attachments:
+          <li>{{a}}</li>
+          % end
+        </ul>
+
+        <h2>upload attachments (tar/tar.gz)</h2>
+        <form action="upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="attachment" required />
+            <button>UPLOAD</button>
+        </form>
+    </main>
+</body>
+</html>

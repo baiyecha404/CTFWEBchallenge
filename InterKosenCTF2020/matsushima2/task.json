@@ -1,0 +1,10 @@
+{
+    "name": "matsushima2",
+    "description": "Do you like poker? I like blackjack! Let's play it <a href=\"http://${host}:${port}/\" target=\"_blank\">here</a>.",
+    "flag": "KosenCTF{r3m3mb3r_m475u5him4}",
+    "author": "theoremoon",
+    "tags": ["web", "warmup"],
+    "host": "web.kosenctf.com",
+    "port": 14001,
+    "is_survey": false
+}

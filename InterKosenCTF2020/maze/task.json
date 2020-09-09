@@ -1,0 +1,10 @@
+{
+    "name": "maze",
+    "description": "<p>I invented a <a href=\"http://${host}:${port}/solve\" target=\"_blank\">Maze Solver API</a>.<br><i>\"Now We Know What the Maze Is.\"</i></p>",
+    "flag": "KosenCTF{fr0m_Array_prototype_pollution_t0_RCE}",
+    "author": "ptr-yudai",
+    "tags": ["web", "lunatic"],
+    "host": "web.kosenctf.com",
+    "port": 14002,
+    "is_survey": false
+}

@@ -1,0 +1,6 @@
+version: "3"
+services:
+  miniblog:
+    build: ./
+    ports:
+      - "14010:14000"

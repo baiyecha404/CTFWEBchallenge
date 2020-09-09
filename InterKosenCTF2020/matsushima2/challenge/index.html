@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Matsushima 2</title>
+    <style>
+        html,body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #app {
+            width: 1192px;
+            margin: 0 auto;
+        }
+        .card-area {
+            margin-bottom: 20px;
+            height: 200px;
+            border: 2px ridge #ccc;
+        }
+        h2 {
+            margin-top: 20px;
+                margin-bottom: 0;
+        }
+        .card-area::after {
+            content: "";
+            display: block;
+        }
+        button {
+            background: white;
+            padding: 0.5em 1em;
+            border: 2px solid #000;
+        }
+        button:not(.disabled):hover {
+            background: black;
+            color: white;
+            cursor: pointer;
+        }
+        .disabled {
+            border-color: #ccc;
+            background-color: #ccc;
+        }
+        
+        h1 {
+            text-align: center;
+
+            text-shadow: 1px  1px 0 #000,
+                         2px  2px 0 #000,
+                        -1px  1px 0 #000,
+                         1px -1px 0 #000,
+                        -1px -1px 0 #000;
+            color: pink;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <h1>MATSUSHIMA 2</h1>
+            <h2>Dealer's Hand ({{dealer_score}})</h2>
+            <div class="card-area">
+                <img v-for="card in dealer" :key="card" :src="'card/' + card + '.png'">
+            </div>
+
+            <hr />
+
+            <h2>You have: {{chip}} chips</h2>
+            <p>
+                <button @click="flag" :class="{ disabled: !flag_eligible }">GET FLAG by 999999 chips</button>
+            </p>
+
+            <p>
+                <button @click="hit" :class="{disabled: !playable}">HIT</button>
+                <button @click="stand" :class="{disabled: !playable}">STAND</button>
+                <button @click="next_game" :class="{disabled: !nextplayable}">NEXT GAME</button>
+            </p>
+
+            <p v-if="winlose" class="font-weight: bold;">{{winlose}}</p>
+
+            <h2>Your Hand ({{player_score}})</h2>
+            <div v-if="player_score < 0" style="color: red; font-weight: bold;">BURST</div>
+            <div class="card-area">
+                <img v-for="card in player" :key="card" :src="'card/' + card + '.png'">
+            </div>
+
+            <hr />
+
+            <div>
+                <button @click="reset">RESET</button>
+            </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js" integrity="sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw==" crossorigin="anonymous"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                player: [],
+                dealer: [],
+                player_score: 0,
+                dealer_score: 0,
+                chip: 0,
+                winlose: '',
+            },
+            mounted() {
+                this.reset()
+            },
+            methods: {
+                reset() {
+                    this.winlose = ''
+                    fetch('/initialize', {
+                        method: 'POST'
+                    })
+                        .then(r => r.json())
+                        .then(r => {
+                            this.player = r.player
+                            this.dealer = r.dealer
+                            this.player_score = r.player_score
+                            this.dealer_score = r.dealer_score
+                            this.chip = r.chip
+                        })
+                },
+                hit() {
+                    if (!this.playable) {
+                        return;
+                    }
+                    fetch('/hit', {
+                        method: 'POST'
+                    })
+                        .then(r => r.json())
+                        .then(r => {
+                            this.player = r.player
+                            this.dealer = r.dealer
+                            this.player_score = r.player_score
+                            this.dealer_score = r.dealer_score
+                            this.chip = r.chip
+                        })
+                },
+                stand() {
+                    if (!this.playable) {
+                        return;
+                    }
+                    fetch('/stand', {
+                        method: 'POST'
+                    })
+                        .then(r => r.json())
+                        .then(r => {
+                            this.player = r.player
+                            this.dealer = r.dealer
+                            this.player_score = r.player_score
+                            this.dealer_score = r.dealer_score
+                            this.chip = r.chip
+                            if (this.chip == 0) {
+                                this.winlose = 'YOU LOSE...'
+                            } else {
+                                this.winlose = 'YOU WIN!!!'
+                            }
+                        })
+                },
+                next_game() {
+                    if (!this.nextplayable) {
+                        return;
+                    }
+                    this.winlose = ''
+                    fetch('/nextgame', {
+                        method: 'POST'
+                    })
+                        .then(r => r.json())
+                        .then(r => {
+                            this.player = r.player
+                            this.dealer = r.dealer
+                            this.player_score = r.player_score
+                            this.dealer_score = r.dealer_score
+                            this.chip = r.chip
+                        })
+                },
+                flag() {
+                    if (!this.flag_eligible) {
+                        return;
+                    }
+                    fetch('/flag')
+                        .then(r => r.json())
+                        .then(r => {
+                            alert(r.flag)
+                        })
+                }
+
+            },
+            computed: {
+                playable() {
+                    return this.chip > 0 && this.dealer.length == 1
+                },
+                nextplayable() {
+                    return this.chip > 0 && this.dealer.length > 1
+                },
+                flag_eligible() {
+                    return this.chip >= 999999
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

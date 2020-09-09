@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+</head>
+<body>
+    <header>
+        <figure>
+            <img src="data:image/png;base64,{{attachment_neko}}" />
+        </figure>
+        <h1>MY BLOG</h1>
+    </header>
+    <main>
+        <h2>{{title}}</h2>
+        <article>
+            {{!content}}
+        </article>
+        <small>last update: {{last_update}}</small>
+    </main>
+</body>
+</html>
