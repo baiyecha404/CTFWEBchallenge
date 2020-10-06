@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  # PostgreSQL database server
+  psql:
+    build:
+      context: ./psql
+      dockerfile: Dockerfile
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_PASSWORD: "xy9^yExv3N#Ebt5xLFnyGCU@"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+      - ./psql/pg_hba.conf:/var/lib/postgres/data/pg_hba.conf
+      - ./data/backup:/pgbackup
+    restart: unless-stopped
+
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    depends_on:
+      - psql
+    volumes:
+      - ./app:/var/www
+      - ./data:/var/data
+    ports:
+      - 1001:80
+      - 8181:8181
+    restart: unless-stopped
+    command: bash -c "/usr/local/bin/docker-entrypoint.sh ${LAPIS_CONFIG}"
+
+volumes:
+  postgres:

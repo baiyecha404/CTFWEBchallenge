@@ -1,0 +1,25 @@
+.cat {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/assets/spacecat.jpg');
+  z-index: -1;
+  filter: blur(5px);
+}
+
+.answer {
+  animation: answer-anim 3s forwards;
+}
+
+@keyframes answer-anim {
+  0% {
+    font-size: 15px;
+    transform: rotate(0deg);
+  }
+  100% {
+    font-size: 150px;
+    transform: rotate(1842deg);
+  }
+}

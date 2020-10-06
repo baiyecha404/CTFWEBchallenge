@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+}
+
+group 'ru.mctf'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+jar {
+    manifest {
+        attributes("Implementation-Title": "Gradle",
+                "Implementation-Version": archiveVersion,
+                "Main-Class": "ru.mctf.chat.client.ChatClient")
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+dependencies {
+    compile group: 'com.esotericsoftware', name: 'kryo', version: '4.0.2'
+    compile group: 'org.springframework', name: 'spring-websocket', version: '5.2.8.RELEASE'
+    compile group: 'javax.websocket', name: 'javax.websocket-api', version: '1.1'
+    compile group: 'org.glassfish.tyrus.bundles', name: 'tyrus-standalone-client', version: '1.9'
+    compile 'com.formdev:flatlaf:0.39'
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+}

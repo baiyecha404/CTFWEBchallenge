@@ -84,7 +84,6 @@ def do_update_template():
     template_path = "userdir/{userid}/template".format(userid=users[username]["id"])
     with open(template_path, "w") as f:
         f.write(content)
-
     redirect("/")
 
 

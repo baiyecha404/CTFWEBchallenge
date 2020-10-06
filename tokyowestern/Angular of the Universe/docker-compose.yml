@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  nginx:
+    build: ./nginx
+    ports:
+      - 8081:8080
+  app:
+    build: ./app
+    environment:
+      - FLAG=FLAG{xxxxx}
+      - FLAG2=FLAG{yyyyy}
+

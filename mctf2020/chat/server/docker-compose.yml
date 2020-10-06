@@ -1,0 +1,28 @@
+version: "3.0"
+
+services:
+  chat:
+    container_name: chat
+    build:
+      context: .
+      args:
+        CHAT_FLAG: $CHAT_FLAG
+    image: "gcr.io/docker-swarm-281107/kryo:latest"
+    healthcheck:
+      test: ["CMD", "/healthcheck.sh"]
+      interval: 10s
+      timeout: 10s
+      retries: 2
+    deploy:
+      labels:
+        - traefik.http.routers.serialization-hard-2-kryo.rule=Host(`chat.mctf.online`)
+        - traefik.http.services.serialization-hard-2-kryo.loadbalancer.server.port=1234
+        - traefik.docker.network=traefik
+    restart: unless-stopped
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external:
+      name: traefik

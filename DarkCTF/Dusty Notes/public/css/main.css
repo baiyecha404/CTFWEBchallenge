@@ -1,0 +1,98 @@
+.orange {
+  background-color: #de8540 !important;
+}
+
+.blue {
+  background-color: #407fde !important;
+}
+
+.pink {
+  background-color: #d4195e !important;
+}
+
+.green {
+  background-color: #409147 !important;
+}
+
+body {
+  margin: 10px
+  padding: 0;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 18px;
+}
+
+div {
+  position: relative;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.material-icons-round {
+	background-color: Transparent;
+	border: none;
+  font-size: 2rem;
+  user-select: none;
+}
+
+.cont {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.card {
+  background-color: #fff;
+  overflow: hidden;
+  color: #fff;
+  background-color: #407fde;
+  width: 280px;
+  border-radius: 14px;
+  box-shadow: 0px 0px 8px -3px rgba(0, 0, 0, 0.75), 0px 17px 22px -16px rgba(0, 0, 0, 0.75);
+  margin: 0.5rem;
+}
+.card .nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 0.5rem;
+}
+.card .title, .card .text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card .title > textarea, .card .text > textarea {
+  resize: none;
+  width: 100%;
+  background: none;
+  font: inherit;
+  color: inherit;
+  height: 100%;
+  overflow: hidden;
+  border: none;
+  padding: none;
+}
+.card .title > textarea::placeholder, .card .text > textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.card .title > textarea:focus, .card .text > textarea:focus {
+  border: none;
+  outline: none;
+}
+.card .title {
+  font-weight: bold;
+  font-size: 1.4rem;
+  padding: 0.5rem 1rem 0.3rem 1rem;
+}
+.card .title > textarea {
+  text-transform: uppercase;
+  height: 1.5em;
+}
+.card .text {
+  padding: 0.3rem 1rem 1rem 1rem;
+}
+.card .text > textarea {
+  min-height: 120px;
+}

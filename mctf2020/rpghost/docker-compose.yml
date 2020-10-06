@@ -1,0 +1,28 @@
+version: "3.0"
+
+services:
+  sharing:
+    container_name: sharing
+    build:
+      context: .
+      args:
+        SHARING_FLAG: $SHARING_FLAG
+    image: "gcr.io/docker-swarm-281107/sharing:latest"
+    healthcheck:
+      test: ["CMD", "/healthcheck.sh"]
+      interval: 10s
+      timeout: 10s
+      retries: 2
+    deploy:
+      labels:
+        - traefik.http.routers.web-hard-3-cache.rule=Host(`rpghost.mctf.online`)
+        - traefik.http.services.web-hard-3-cache.loadbalancer.server.port=3456
+        - traefik.docker.network=traefik
+    restart: unless-stopped
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external:
+      name: traefik
