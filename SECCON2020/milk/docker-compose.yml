@@ -1,0 +1,32 @@
+version: '2'
+services:
+  mongo:
+    restart: always
+    image: mongo
+  front:
+    restart: always
+    image: php:7-fpm
+    volumes:
+      - ./front:/var/www
+  api:
+    restart: always
+    image: hayd/alpine-deno
+    volumes:
+      - ./api:/app
+    working_dir: /app
+    command: deno run --allow-net --allow-write --allow-read --allow-plugin --allow-env --unstable index.ts
+    depends_on:
+      - mongo
+  nginx:
+    restart: always
+    image: openresty/openresty
+    ports:
+      - 443:443
+    volumes:
+      - ./front:/var/www:ro
+      - ./nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:ro
+      - ./credential.crt:/usr/local/openresty/nginx/conf/credential.crt:ro # make your own keys :)
+      - ./credential.key:/usr/local/openresty/nginx/conf/credential.key:ro # make your own keys :)
+    depends_on:
+      - front
+      - api

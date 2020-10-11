@@ -1,0 +1,43 @@
+version: "3"
+services:
+  # identity-aware-proxy-like proxy (nginx + auth) + backend service (service-a)
+  nginx:
+    build: ./nginx
+    restart: always
+    ports:
+      - 127.0.0.1:8080:80
+
+  auth:
+    build: ./auth
+    volumes:
+      - cert-root:/cert:ro
+    restart: always
+
+  service-a:
+    build: ./service-a
+    restart: always
+    environment:
+      FLAG: "SECCON{dummy}"
+
+  # external service
+  service-b:
+    build: ./service-b
+    ports:
+      - 127.0.0.1:8081:80
+    volumes:
+      - cert-b:/cert:ro
+    environment:
+      - PROXY_TOKEN_ENDPOINT=http://localhost:8080/proxy/external
+    restart: always
+
+  # one-time utils
+  certgen:
+    build: ./certgen
+    volumes:
+      - cert-root:/certs/root
+      - cert-b:/certs/service-b
+    restart: "no"
+
+volumes:
+  cert-root:
+  cert-b:

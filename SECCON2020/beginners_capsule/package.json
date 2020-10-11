@@ -1,0 +1,25 @@
+{
+  "name": "beginners-capsule",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "ts-node server.ts"
+  },
+  "author": "Secret :)",
+  "dependencies": {
+    "@types/bluebird": "^3.5.32",
+    "@types/concat-stream": "^1.6.0",
+    "@types/dockerode": "^2.5.34",
+    "@types/tmp": "^0.2.0",
+    "axios": "^0.20.0",
+    "bluebird": "^3.7.2",
+    "concat-stream": "^2.0.0",
+    "dockerode": "^3.2.1",
+    "fastify": "^3.5.1",
+    "fastify-static": "^3.2.1",
+    "tmp": "^0.2.1",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3"
+  }
+}

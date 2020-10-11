@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beginner's Capsule</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@typopro/web-iosevka@3.7.5/TypoPRO-iosevka-term-medium.css">
+  <script src="https://www.google.com/recaptcha/api.js?render=6LcpzNMZAAAAAGGQbg1YPUbLPd4mWK4Zgz24DyUN"></script>
+  <script>
+    run = async (event) => {
+      event.preventDefault();
+
+      document.querySelector('button').disabled = true;
+      document.querySelector('.result').textContent = '';
+
+      await new Promise((resolve) => grecaptcha.ready(resolve));
+      const token = await grecaptcha.execute('6LcpzNMZAAAAAGGQbg1YPUbLPd4mWK4Zgz24DyUN', {action: 'submit'});
+
+      const code = document.querySelector('.code').innerText;
+      document.querySelector('.code').innerText = code;
+
+      const res = await fetch('/', {
+        method: 'post',
+        body: `code=${encodeURIComponent(code)}&token=${encodeURIComponent(token)}`,
+      });
+      const result = await res.text();
+
+      document.querySelector('.result').textContent = result;
+      document.querySelector('button').disabled = false;
+    };
+  </script>
+  <style>
+    html {
+      height: 100%;
+      background: #171d1d;
+    }
+    body {
+      max-width: 50rem;
+      margin: 0 auto;
+    }
+    pre, code, textarea, .result, .code {
+      font-size: 1.5rem;
+      font-family: 'TypoPRO Iosevka Term';
+      color: white;
+      padding: 0.5rem;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    code {
+      padding: 0;
+    }
+    .code {
+      border: 1px solid dimgray;
+      border-radius: 3px;
+      outline: 0;
+      padding: 1rem 0.5rem;
+    }
+    button {
+      margin: 2rem 0.5rem;
+      background: #171d1d;
+      color: white;
+      border: 1px solid gray;
+      border-radius: 3px;
+      font-size: 1.5rem;
+      padding: 0.2rem 1.2rem;
+    }
+    button[disabled] {
+      opacity: 0.3;
+    }
+  </style>
+</head>
+<body>
+  <form onsubmit="run(event)">
+    <pre><code>import * as fs from 'fs';
+// @ts-ignore
+import {enableSeccompFilter} from './lib.js';
+
+class Flag {
+  #flag: string;
+  constructor(flag: string) {
+    this.#flag = flag;
+  }
+}
+
+const flag = new Flag(fs.readFileSync('flag.txt').toString());
+fs.unlinkSync('flag.txt');
+
+enableSeccompFilter();</code></pre>
+    <div class="code" contenteditable spellcheck="false">console.log('Hello, World!');</div>
+    <button type="submit">Run</button>
+  </form>
+  <pre class="result"></pre>
+</body>
+</html>
