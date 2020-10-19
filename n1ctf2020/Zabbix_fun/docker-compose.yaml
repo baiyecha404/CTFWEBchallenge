@@ -1,0 +1,65 @@
+version: '2'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+    networks:
+      - zbx-net
+
+  web:
+    image: zabbix/zabbix-web-nginx-mysql:ubuntu-5.0-latest
+    container_name: zabbix-web-nginx-mysql
+    environment:
+      - DB_SERVER_HOST=mysql
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=secret
+      - ZBX_SERVER_HOST=zabbix-server
+      - PHP_TZ=Asia/Shanghai
+    ports:
+      - '8080:8080'
+    links:
+      - mysql
+      - zabbix-server
+    depends_on:
+      - mysql
+    networks:
+      - zbx-net
+
+  zabbix-server:
+    image: zabbix/zabbix-server-mysql:alpine-5.0-latest
+    container_name: zabbix-server-mysql
+    environment:
+      - DB_SERVER_HOST=mysql
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=secret
+    ports:
+      - '10051:10051'
+    links:
+      - mysql
+    depends_on:
+      - mysql
+    networks:
+      - zbx-net
+
+  zabbix-agent:
+    image: zabbix/zabbix-agent:alpine-5.0-latest
+    container_name: zabbix-agent-secret
+    volumes:
+      - ./flag/:/flag/
+    environment:
+      - ZBX_HOSTNAME=secret_agent
+      - ZBX_SERVER_HOST=zabbix-server
+    networks:
+      - zbx-net
+
+networks:
+  zbx-net:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.233.0/24
