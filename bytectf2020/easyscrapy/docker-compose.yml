@@ -1,0 +1,35 @@
+version: "3"
+services:
+  python:
+    build: .
+    container_name: ezscrapy_py
+    networks:
+      ezscrapy-backend:
+        ipv4_address: 172.18.0.4
+  redis:
+    image: redis:latest
+    container_name: ezscrapy_redis
+    ports:
+      -  "6379:6379"
+    networks:
+      ezscrapy-backend:
+        ipv4_address: 172.18.0.3
+  mongodb:
+    image: mongo:4.2
+    container_name: ezscrapy_mongo
+    restart: always
+    environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: root
+        MONGO_INITDB_DATABASE: result
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      ezscrapy-backend:
+        ipv4_address: 172.18.0.2  
+networks:
+  ezscrapy-backend:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.18.0.0/24
