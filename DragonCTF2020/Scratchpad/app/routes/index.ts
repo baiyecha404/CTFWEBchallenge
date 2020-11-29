@@ -14,13 +14,13 @@ router.post('/login', async (req, res) => {
     return res.render(
         'login', {title: 'Log in', error: 'Invalid username or password'});
   }
-
   utils.signIn(req, user);
   res.redirect('/notes');
 });
 
-router.get(
-    '/register', (_req, res) => res.render('register', {title: 'Register'}));
+router.get('/register', (_req, res) => res.render('register', {title: 'Register'}));
+
+
 router.post('/register', async (req, res) => {
   const regexp = /^\s*$/;
   let errors = [];
