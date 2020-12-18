@@ -1,0 +1,7 @@
+version: "3"
+services:
+  php:
+    build: .
+    container_name: wallbreaker
+    ports:
+      - "8200:80"
