@@ -1,0 +1,16 @@
+flask
+beautifulsoup4
+micawber
+parse
+pygments
+markdown
+peewee
+flask_cors
+pusher
+flask_session
+flask_session_captcha
+flask_wtf
+flask_sqlalchemy
+simplejson
+pymemcache
+pylibmc

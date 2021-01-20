@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>HackEmAll Next-Gen Proxy</title>
+ 
+ 
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+ 
+    <link href="/static/css/jumbotron-narrow.css" rel="stylesheet">
+ 
+  
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="/static/css/signup.css" rel="stylesheet">
+       
+    <style>
+        .btn-file {
+            position: relative;
+            overflow: hidden;
+        }
+         
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+    </style>
+ 
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header">
+        <nav>
+        </nav>
+        <a href="/"><img src="/static/images/hackemall.png" alt="hackemall.png"/></a>
+        <center><img src="/static/images/next-gen-proxy.png" alt="hackemall.png"/></center>
+      </div>
+      
+      <div class="jumbotron">
+        <center>
+          <span class="btn btn-primary btn-file">History Page</span>
+          <br>
+          <br>
+          <span class="btn btn-primary btn-file">Browsed page: {{cache_value}}</span>
+          <br>
+          <br>
+        </center>
+        <br>
+      </div>
+      
+      <footer class="footer">
+            <p>from ducnt import ❤️</p>
+      </footer>
+
+    </div>
+  </body>
+</html>
