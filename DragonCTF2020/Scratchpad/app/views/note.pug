@@ -15,7 +15,7 @@ block content
       div !{note.content}
 
       div
-        a.btn.btn-link(href=`/notes/${note.id}/edit`) Edit
+        a.btn.btn-link(href=`/packages/${note.id}/edit`) Edit
 
         form.inline(method='POST', action=`/notes/${note.id}/delete`)
           input(type='hidden', name='_csrf', value=csrfToken)
