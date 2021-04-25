@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<title>ANOTHER NOTE APP</title>
+	</head>
+	<body>
+		<form method=POST action=/note>
+			Write your note:
+			<br><br>
+			<textarea rows=10 cols=50 name=note></textarea>
+			<br><br>
+			<button>Submit</button>
+			<a href="$NOTEURL$/report" target="_blank">Report vulns</a>
+		</form>
+		<script nonce="$NONCE$">
+			window.name = "1337";
+			window.opener = null;
+    		history.replaceState(null, null, new URL(location.origin).href);
+    		// :)
+
+			$FEATURE$
+		</script>
+	</body>
+</html>

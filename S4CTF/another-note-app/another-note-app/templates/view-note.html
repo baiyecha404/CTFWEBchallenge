@@ -1,0 +1,18 @@
+<html>
+	<head>
+		<title>ANOTHER NOTE APP</title>
+	</head>
+	<body>
+		<iframe src="$NOTEURL$/" id="noteframe"></iframe>
+		<br><br>
+		<button id="deletebtn">Delete note</button>
+		<script nonce="$NONCE$">
+			noteframe.onload = ()=>{
+				fetch("/note").then(r=>r.text()).then(r=>noteframe.contentWindow.postMessage({"type":"note","note":r},"*"));
+			};
+			deletebtn.onclick = ()=>{
+				fetch("/note",{method:"DELETE"}).then(_=>document.location="/");
+			}
+		</script>
+	</body>
+</html>
