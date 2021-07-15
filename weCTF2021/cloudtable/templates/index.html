@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CloudTable</title>
+    <script src="https://www.recaptcha.net/recaptcha/api.js"></script>
+</head>
+<body>
+    <h1>CloudTable</h1>
+    <p>Create a SQL Table Online and Use It in Your Production System! BTW it's free!</p>
+    <hr>
+    <div>
+        <div id="fields">
+
+        </div>
+        <button class="more" onclick="makeField(attrCount++)">More Fields</button>
+
+
+        <form action="/create" method="post">
+            <input name="payload" hidden id="payload"/>
+            <div class="g-recaptcha" data-sitekey="{{ pubkey }}" ></div>
+            <label>^ There is a google recaptcha here</label>
+            <input hidden type="submit" id="create"/>
+        </form>
+        <button class="create" onclick="create()">Create</button>
+
+    </div>
+
+</body>
+
+<script>
+    function makeField(i){
+        let html = `
+<div style="display: flex; justify-content: space-between">
+<div>
+    <label for="attr-name-${i}">Attribute Name:</label>
+    <input id="attr-name-${i}" placeholder="sometext"/>
+</div>
+<div>
+    <label for="attr-type-${i}">Attribute Type:</label>
+    <select id="attr-type-${i}">
+        <option value="1">Integer</option>
+        <option value="2">Char</option>
+        <option value="3">Bool</option>
+    </select>
+</div>
+</div>
+        `
+
+        let child = document.createElement("div");
+        child.innerHTML = html;
+        document.getElementById("fields").appendChild(child);
+    }
+    let attrCount = 1;
+    makeField(0);
+
+    function create(){
+        let dict = {};
+        for (let i = 0; i < attrCount; i++) {
+            let value = document.getElementById(`attr-name-${i}`).value;
+            if (!value || value.length < 1)
+                alert("Ignoring a field with empty name");
+            dict[value] = document.getElementById(`attr-type-${i}`).value;
+        }
+        document.getElementById("payload").value = JSON.stringify(dict);
+        document.getElementById("create").click();
+    }
+</script>
+
+<style>
+    body {
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 0 10px;
+        font-family: Chandas, serif;
+    }
+    input {
+        font-size: 18px;
+        width: 100%;
+    }
+    select {
+        font-size: 18px;
+        width: 100%;
+    }
+
+    input:focus {
+        outline-color: darkblue;
+    }
+
+    button {
+        padding: 6px;
+        background: #fff;
+        border-color: #ccc;
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 5px;
+        font-weight: 800;
+    }
+
+    .more {
+        float: right;
+    }
+    .create {
+        width: 100%;
+        margin-top: 20px;
+        background: #000;
+        color: #fff;
+        padding: 10px;
+    }
+
+</style>
+
+</html>
