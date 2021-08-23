@@ -1,0 +1,15 @@
+<html>
+
+<script>
+    window.addEventListener("load", () => {
+        const sw = "https://blogme.be.ax/api/file?id=97a982aa-a60a-42ce-8475-f6176fc8c3c4";
+        navigator.serviceWorker.register(sw, { scope: '/api' })
+            .then((register) => {
+                console.log("Successfully register service worker");
+            }, (err) => {
+                console.log('Service worker error:', err);
+            });
+    });
+</script>
+
+</html>
