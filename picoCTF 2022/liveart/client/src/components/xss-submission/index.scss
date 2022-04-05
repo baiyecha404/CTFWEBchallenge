@@ -1,0 +1,59 @@
+@use "/src/variables.scss" as vars;
+
+.xss-submission {
+    .xss-title {
+        font-size: 24px;
+        font-weight: bold;
+        align-self: center;
+    }
+
+    .xss-link {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        column-gap: 16px;
+
+        .xss-input {
+            flex-grow: 1;
+        }
+    }
+
+    .xss-email {
+        box-shadow: vars.$box-shadow-small;
+        background: #E0E0E8;
+        padding: 16px;
+        white-space: pre-wrap;
+
+        .link-text {
+            color: #2828e0;
+            font-weight: bold;
+        }
+    }
+
+    .xss-reminder {
+        color: #202020;
+
+        .good-uri {
+            font-weight: bold;
+            color: #068b18
+        }
+
+        .bad-uri {
+            font-weight: bold;
+            color: #b60606
+        }
+    }
+
+    .xss-status {
+        align-self: center;
+
+        &.xss-error {
+            align-self: start;
+
+            &::before {
+                color: #FF2020;
+                content: "Error: ";
+            }
+        }
+    }
+}

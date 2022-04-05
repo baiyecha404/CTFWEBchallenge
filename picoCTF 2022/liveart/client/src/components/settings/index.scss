@@ -1,0 +1,14 @@
+.settings-options {
+    display: flex;
+    flex-direction: column;
+
+    .settings-option {
+        display: flex;
+        flex-direction: row;
+        column-gap: 16px;
+
+        .text-input {
+            flex-grow: 1;
+        }
+    }
+}

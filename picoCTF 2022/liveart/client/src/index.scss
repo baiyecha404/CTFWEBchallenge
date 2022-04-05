@@ -1,0 +1,35 @@
+@use "/src/variables.scss" as vars;
+
+.frame {
+    box-shadow: vars.$box-shadow-big;
+    background: #FFFFFF;
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+}
+
+.button {
+    cursor: pointer;
+    height: 32px;
+
+    background: #e1e9fc;
+    box-shadow: vars.$box-shadow-small;
+
+    padding: 4px 8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:active {
+        background: #c1d5f9;
+    }
+}
+
+.spacer {
+    padding-bottom: 4px;
+    border-bottom: 1px solid #102810;
+    margin-bottom: 4px;
+}

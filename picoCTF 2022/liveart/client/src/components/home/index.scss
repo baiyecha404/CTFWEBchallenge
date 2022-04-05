@@ -1,0 +1,11 @@
+.home {
+    .view {
+        display: flex;
+        flex-direction: row;
+        column-gap: 16px;
+
+        .text-input {
+            flex-grow: 1;
+        }
+    }
+}

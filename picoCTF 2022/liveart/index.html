@@ -1,0 +1,15 @@
+<iframe srcdoc="none" id="poc"></iframe>
+<script>
+    frm.onload = () => {
+        console.log('loaded 1')
+        poc.onload = () => {
+           poc.onload = null
+            console.log('loaded 2')
+            setTimeout(() => {
+                poc.width = 800
+                poc.height = 400
+            }, 500)
+        }
+        poc.contentWindow.location = 'http://localhost:3000/drawing/byc#is=byc&onerror=alert(1)&src=byc'
+    }
+</script>

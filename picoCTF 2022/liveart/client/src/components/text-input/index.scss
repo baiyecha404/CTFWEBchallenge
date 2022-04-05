@@ -1,0 +1,9 @@
+@use "/src/variables.scss" as vars;
+
+.text-input {
+    box-shadow: vars.$box-shadow-small;
+    border: 1px solid #00000040;
+    padding: 4px 8px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}
